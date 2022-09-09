@@ -1,9 +1,15 @@
 import React from "react";
+import Sidebar from "./components/Sidebar";
+import Editor from "./components/Editor";
+import { data } from "./data";
+import Split from "react-split";
+import { nanoid } from "nanoid";
 
 export default function App() {
   return (
-    <div>
-      <h1>hello from app</h1>
-    </div>
+    <main>
+      <Editor />
+      <Sidebar />
+    </main>
   );
 }
