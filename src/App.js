@@ -39,15 +39,21 @@ export default function App() {
   function updateNote(text) {
     //更新順に並び替える
     setNotes((oldNotes) => {
+      //空の配列を用意する
       const newArray = [];
+      //既存ノートをループする
       for (let i = 0; i < oldNotes.length; i++) {
         const oldNote = oldNotes[i];
+        //idが一致したら、
         if (oldNote.id === currentNoteId) {
+          //配列の一番前に入れる
           newArray.unshift({ ...oldNote, body: text });
         } else {
+          //それ以外は、最後に入れる
           newArray.push(oldNote)
         }
       }
+      //配列を返す
       return newArray
     });
 
