@@ -17,7 +17,8 @@ GIF IMAGE HERE
 - localstrage.getItem()
 - JSON.perse()
 - JSON.strignfy()
+- split()
 
 **Notes📝**
 - initialState(https://reactjs.org/docs/hooks-reference.html#lazy-initial-state)
-To avoid updating states every time it renders
+to avoid updating states every time it renders
