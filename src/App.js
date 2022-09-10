@@ -7,8 +7,13 @@ import { nanoid } from "nanoid";
 
 export default function App() {
   const [notes, setNotes] = useState(
-    JSON.parse(localStorage.getItem("notes")) || []
+    //localstrageから保存したnotesを取り出す, なければempty arrayを返す
+    () => JSON.parse(localStorage.getItem("notes")) || []
   );
+
+  // Lazy initialization
+  //https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
+  // const [state, setState] = useState(console.log("hello"));
 
   useEffect(() => {
     //localstrageに保存 setItem()
@@ -30,6 +35,7 @@ export default function App() {
 
   function updateNote(text) {
     setNotes((oldNotes) =>
+      //notesをmappingして、idが一致している場合=>bodyをupdateする
       oldNotes.map((oldNote) => {
         return oldNote.id === currentNoteId
           ? { ...oldNote, body: text }
