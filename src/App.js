@@ -5,6 +5,9 @@ import { data } from "./data";
 import Split from "react-split";
 import { nanoid } from "nanoid";
 
+//やりたいこと：更新したら、noteを一番上に持っていく(body) => bodyが更新されたことを
+//更新したら、stateを更新、
+
 export default function App() {
   const [notes, setNotes] = useState(
     //localstrageから保存したnotesを取り出す, なければempty arrayを返す
@@ -34,14 +37,28 @@ export default function App() {
   }
 
   function updateNote(text) {
-    setNotes((oldNotes) =>
-      //notesをmappingして、idが一致している場合=>bodyをupdateする
-      oldNotes.map((oldNote) => {
-        return oldNote.id === currentNoteId
-          ? { ...oldNote, body: text }
-          : oldNote;
-      })
-    );
+    //更新順に並び替える
+    setNotes((oldNotes) => {
+      const newArray = [];
+      for (let i = 0; i < oldNotes.length; i++) {
+        const oldNote = oldNotes[i];
+        if (oldNote.id === currentNoteId) {
+          newArray.unshift({ ...oldNote, body: text });
+        } else {
+          newArray.push(oldNote)
+        }
+      }
+      return newArray
+    });
+
+    // setNotes((oldNotes) =>
+    //   //notesをmappingして、idが一致している場合=>bodyをupdateする
+    //   oldNotes.map((oldNote) => {
+    //     return oldNote.id === currentNoteId
+    //       ? { ...oldNote, body: text }
+    //       : oldNote;
+    //   })
+    // );
   }
 
   function findCurrentNote() {
@@ -61,6 +78,7 @@ export default function App() {
             currentNote={findCurrentNote()}
             setCurrentNoteId={setCurrentNoteId}
             newNote={createNewNote}
+            updateNote={updateNote}
           />
           {currentNoteId && notes.length > 0 && (
             <Editor currentNote={findCurrentNote()} updateNote={updateNote} />
