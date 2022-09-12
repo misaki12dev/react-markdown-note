@@ -2,7 +2,8 @@
 
 ### Markdown Note App
 
-GIF IMAGE HERE
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/96173629/189568242-be03469b-aa28-439b-819e-b9e86b2c4b29.gif)
+
 
 **Installed Packages**
 - nanoid(unique ID generator): https://www.npmjs.com/package/nanoid
